@@ -118,7 +118,16 @@ This project requires no build tools, bundlers, or backend servers.
    cd StockItUp
    ```
 
-3. **Open in browser**
+3. **(Optional) Add your Finnhub API key**
+   ```bash
+   cp config.example.js config.js
+   # then edit config.js and set FINNHUB_API_KEY (get one at https://finnhub.io/register)
+   ```
+   `config.js` is git-ignored. Without it the dashboard runs on mock data.
+   Note: any key shipped to a browser is visible to visitors; for a public
+   deployment, proxy Finnhub requests through a small backend instead.
+
+4. **Open in browser**
    ```bash
    # Simply open index.html in your browser
    # Or use a local server (optional):

@@ -1,0 +1,5 @@
+# Local configuration with API keys (see config.example.js)
+config.js
+.env
+.env.*
+!.env.example

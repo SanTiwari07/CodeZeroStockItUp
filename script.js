@@ -1,8 +1,14 @@
+// The Finnhub key is loaded from config.js (git-ignored, see config.example.js).
+// Without a key the dashboard falls back to the built-in mock data provider.
+const USER_CONFIG = (typeof window !== 'undefined' && window.STOCKITUP_CONFIG) || {};
 const API_CONFIG = {
-    FINNHUB_API_KEY: 'd25p1l1r01qhge4dmi7gd25p1l1r01qhge4dmi80',
+    FINNHUB_API_KEY: USER_CONFIG.FINNHUB_API_KEY || '',
     FINNHUB_BASE_URL: 'https://finnhub.io/api/v1',
-    PROVIDER: 'finnhub' // 'finnhub' or 'mock'
+    PROVIDER: USER_CONFIG.FINNHUB_API_KEY ? (USER_CONFIG.PROVIDER || 'finnhub') : 'mock' // 'finnhub' or 'mock'
 };
+if (API_CONFIG.PROVIDER === 'mock') {
+    console.info('StockItUp: no Finnhub API key configured (config.js); using mock data.');
+}
 const app = {
     currentPage: window.location.pathname.includes('dashboard.html') ? 'dashboard' : 'homepage',
     isDarkMode: false,
